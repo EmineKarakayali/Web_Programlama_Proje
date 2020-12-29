@@ -1,0 +1,199 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Üye Ol";
+}
+
+
+
+<header id="head" class="secondary"></header>
+
+<div class="container">
+    <div class="row">
+        <article class="col-xs-12 maincontent">
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1 class="thin text-center">@ViewData["Title"]</h1>
+                        <p class="text-center text-muted">Zaten Ekstrem Sport üyesi misin? <a asp-area="Identity" asp-page="/Account/Login">Giriş yap</a> ve kaldığın yerden devam et!  </p>
+                        <hr>
+
+                        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                            <div class="top-margin">
+                                <label asp-for="Input.Name"></label>
+                                <input asp-for="Input.Name" class="form-control" />
+                                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Surname"></label>
+                                <input asp-for="Input.Surname" class="form-control" />
+                                <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Tel"></label>
+                                <input asp-for="Input.Tel" class="form-control" />
+                                <span asp-validation-for="Input.Tel" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Birthdate"></label>
+                                <input asp-for="Input.Birthdate" class="form-control" />
+                                <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="top-margin">
+                                <label asp-for="Input.ConfirmPassword"></label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label class="checkbox">
+                                        <input type="checkbox" required><span class="text-danger">*</span>
+                                        <a href="">Üyelik Sözleşmesi</a> şartlarını okudum ve kabul ediyorum.
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        Tarafımla pazarlama ve tanıtım amaçlı iletişime geçilmesine izin veriyorum.
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 text-right">
+                                    <button type="submit" class="btn btn-action">Kayıt</button>
+                                </div>
+                                <div class="col-lg-4 text-muted">
+                                    * işaretli alanların doldurulması zorunludur.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </article>
+         
+        <div class="col-lg-8">
+            <section>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-action" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>	 
+</div>	 
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Name"></label>
+                    <input asp-for="Input.Name" class="form-control" />
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Surname"></label>
+                    <input asp-for="Input.Surname" class="form-control" />
+                    <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Tel"></label>
+                    <input asp-for="Input.Tel" class="form-control" />
+                    <span asp-validation-for="Input.Tel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Birthdate"></label>
+                    <input asp-for="Input.Birthdate" class="form-control" />
+                    <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Use another service to register.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
