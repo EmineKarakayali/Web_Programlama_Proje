@@ -14,6 +14,7 @@ namespace SportProject.Models
         public string SiteUrl { get; set; }
         public string InfoCourse { get; set; }
         public DateTime ActTime { get; set; }
+        public int SportsId { get; set; }
         public Sports Sports { get; set; }
     }
 }

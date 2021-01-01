@@ -46,36 +46,36 @@ namespace SportProject.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Display(Name = "Ad:")]
+            [Display(Name = "Ad: *")]
             public string Name { get; set; }
 
-            [Display(Name = "Soyad:")]
+            [Display(Name = "Soyad: *")]
             public string Surname { get; set; }
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email:")]
+            [Display(Name = "E-mail: *")]
             public string Email { get; set; }
 
             [Required]
             [Phone]
-            [Display(Name = "Tel:")]
+            [Display(Name = "Tel: *")]
             public string Tel { get; set; }
 
-            [Required(ErrorMessage = "{0} alanı boş geçilemez")]
-            [Display(Name = "Doğum Tarihi:")]
+            [Required(ErrorMessage = "{0} alanı boş geçilemez.")]
+            [Display(Name = "Doğum Tarihi: *")]
             [DataType(DataType.Date)]
             [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
             public string Birthdate { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "{0} alanı boş geçilemez.")]
             [StringLength(100)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Şifre:")]
+            [DataType(DataType.Password, ErrorMessage = "Lüften en az 3 karakterli, rakam ve harflerden oluşan bir şifre giriniz.")]
+            [Display(Name = "Şifre: *")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Şifre tekrarı:")]
+            [Display(Name = "Şifre tekrarı: *")]
             [Compare("Password", ErrorMessage = "Şifreler aynı değil.")]
             public string ConfirmPassword { get; set; }
         }

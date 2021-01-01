@@ -37,7 +37,9 @@ namespace SportProject
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 5;
+                options.Password.RequiredLength = 3;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
             });
             services.AddControllersWithViews();
             services.AddRazorPages();

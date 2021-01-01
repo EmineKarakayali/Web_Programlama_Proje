@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +24,10 @@ namespace SportProject.Controllers
         {
             return View(await _context.Sports.ToListAsync());
         }
+        public IActionResult Info()
+        {
+            return View();
+        }
         // GET: Sports/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -44,7 +47,6 @@ namespace SportProject.Controllers
         }
 
         // GET: Sports/Create
-        //[Authorize(Roles =Admin)]
         public IActionResult Create()
         {
             return View();
@@ -55,7 +57,7 @@ namespace SportProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SportId,SportName")] Sports sports)
+        public async Task<IActionResult> Create([Bind("SportId,SportName,PhotoUrl,InfoSport")] Sports sports)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +89,7 @@ namespace SportProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SportId,SportName")] Sports sports)
+        public async Task<IActionResult> Edit(int id, [Bind("SportId,SportName,PhotoUrl,InfoSport")] Sports sports)
         {
             if (id != sports.SportId)
             {

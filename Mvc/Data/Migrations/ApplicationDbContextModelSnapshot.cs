@@ -150,26 +150,6 @@ namespace SportProject.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SportProject.Models.City", b =>
-                {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CountryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("City");
-                });
-
             modelBuilder.Entity("SportProject.Models.Comment", b =>
                 {
                     b.Property<int>("CommentId")
@@ -177,79 +157,34 @@ namespace SportProject.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("ComApproval")
+                        .HasColumnType("bit");
+
                     b.Property<string>("CommentTxt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CommentId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Community", b =>
-                {
-                    b.Property<int>("ComId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ComName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SportsSportId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ComId");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("SportsSportId");
-
-                    b.ToTable("Community");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Country", b =>
-                {
-                    b.Property<int>("CountryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CountryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CountryId");
-
-                    b.ToTable("Country");
-                });
-
-            modelBuilder.Entity("SportProject.Models.CourseCom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CommentId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CoursesCourseId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CommentId");
+                    b.Property<string>("MemberId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("SendDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CommentId");
 
                     b.HasIndex("CoursesCourseId");
 
-                    b.ToTable("CourseCom");
+                    b.HasIndex("MemberId1");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("SportProject.Models.Courses", b =>
@@ -271,119 +206,14 @@ namespace SportProject.Data.Migrations
                     b.Property<string>("SiteUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SportsSportId")
+                    b.Property<int>("SportsId")
                         .HasColumnType("int");
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("SportsSportId");
+                    b.HasIndex("SportsId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Meeting", b =>
-                {
-                    b.Property<int>("MeetId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ActName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ActTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("Capasity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SportsSportId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MeetId");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("SportsSportId");
-
-                    b.ToTable("Meeting");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemComty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CommunityComId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommunityComId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("MemComty");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemMeet", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("MeetingMeetId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MeetingMeetId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("MemMeet");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemSport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SportsSportId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("SportsSportId");
-
-                    b.ToTable("MemSports");
                 });
 
             modelBuilder.Entity("SportProject.Models.Member", b =>
@@ -463,42 +293,6 @@ namespace SportProject.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SportProject.Models.Post", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MemberId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("PostDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SportId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("SportId");
-
-                    b.ToTable("Post");
-                });
-
             modelBuilder.Entity("SportProject.Models.Sports", b =>
                 {
                     b.Property<int>("SportId")
@@ -569,110 +363,24 @@ namespace SportProject.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SportProject.Models.City", b =>
-                {
-                    b.HasOne("SportProject.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId");
-                });
-
             modelBuilder.Entity("SportProject.Models.Comment", b =>
                 {
-                    b.HasOne("SportProject.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Community", b =>
-                {
-                    b.HasOne("SportProject.Models.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId");
-
-                    b.HasOne("SportProject.Models.Sports", "Sports")
-                        .WithMany()
-                        .HasForeignKey("SportsSportId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.CourseCom", b =>
-                {
-                    b.HasOne("SportProject.Models.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId");
-
                     b.HasOne("SportProject.Models.Courses", "Courses")
                         .WithMany()
                         .HasForeignKey("CoursesCourseId");
+
+                    b.HasOne("SportProject.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberId1");
                 });
 
             modelBuilder.Entity("SportProject.Models.Courses", b =>
                 {
                     b.HasOne("SportProject.Models.Sports", "Sports")
                         .WithMany()
-                        .HasForeignKey("SportsSportId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Meeting", b =>
-                {
-                    b.HasOne("SportProject.Models.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId");
-
-                    b.HasOne("SportProject.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId");
-
-                    b.HasOne("SportProject.Models.Sports", "Sports")
-                        .WithMany()
-                        .HasForeignKey("SportsSportId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemComty", b =>
-                {
-                    b.HasOne("SportProject.Models.Community", "Community")
-                        .WithMany()
-                        .HasForeignKey("CommunityComId");
-
-                    b.HasOne("SportProject.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemMeet", b =>
-                {
-                    b.HasOne("SportProject.Models.Meeting", "Meeting")
-                        .WithMany()
-                        .HasForeignKey("MeetingMeetId");
-
-                    b.HasOne("SportProject.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.MemSport", b =>
-                {
-                    b.HasOne("SportProject.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-
-                    b.HasOne("SportProject.Models.Sports", "Sports")
-                        .WithMany()
-                        .HasForeignKey("SportsSportId");
-                });
-
-            modelBuilder.Entity("SportProject.Models.Post", b =>
-                {
-                    b.HasOne("SportProject.Models.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId");
-
-                    b.HasOne("SportProject.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-
-                    b.HasOne("SportProject.Models.Sports", "Sport")
-                        .WithMany()
-                        .HasForeignKey("SportId");
+                        .HasForeignKey("SportsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

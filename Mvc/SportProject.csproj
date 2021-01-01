@@ -10,6 +10,20 @@
     <Compile Remove="Data\Migrations\20201225232815_mig4.Designer.cs" />
     <Compile Remove="Data\Migrations\20201228213233_mig7.cs" />
     <Compile Remove="Data\Migrations\20201228213233_mig7.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201231191938_yenimig.cs" />
+    <Compile Remove="Data\Migrations\20201231191938_yenimig.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201231192711_kurslaryeniden.cs" />
+    <Compile Remove="Data\Migrations\20201231192711_kurslaryeniden.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201231203354_sorunvarmi.cs" />
+    <Compile Remove="Data\Migrations\20201231203354_sorunvarmi.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210101095345_sifrequired.cs" />
+    <Compile Remove="Data\Migrations\20210101095345_sifrequired.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210101095437_sifrequired.cs" />
+    <Compile Remove="Data\Migrations\20210101095437_sifrequired.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210101095601_sifrequired.cs" />
+    <Compile Remove="Data\Migrations\20210101095601_sifrequired.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210101145802_kurssil.cs" />
+    <Compile Remove="Data\Migrations\20210101145802_kurssil.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

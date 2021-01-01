@@ -1,0 +1,132 @@
+﻿@*@model IEnumerable<SportProject.Models.Courses>*@
+@model SportProject.Models.CoursesSportsViewModel
+
+@{
+    ViewData["Title"] = "Kurslar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+
+<div class="container">
+    <h1 class="thin text-center">@ViewData["Title"]</h1>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+        <li class="active">Kurslar</li>
+
+    </ol>
+    <form asp-controller="Courses" asp-action="Index" method="get">
+        <p>
+            <select class="form-control" name="CourseBranch" asp-for="CoursesSports" asp-items="Model.Sport">
+                <option value="">Hepsi</option>
+            </select>
+
+
+            Title: <input type="text" class="form-control" name="SearchString">
+            <input type="submit" class="btn btn-action" value="Filter" />
+        </p>
+    </form>
+
+    @*<p>
+            <a asp-action="Create">Yeni Kurs</a>
+        </p>
+        <form asp-controller="Courses" asp-action="Index" method="get">
+            <p>
+                <select asp-for="CourseSports" asp-items="Model.Sport">
+                    <option value="">All</option>
+                </select>
+
+
+                Title: <input type="text" name="searchString">
+                <input type="submit" value="Filter" />
+            </p>
+        </form>*@
+    <!--<div class="row">
+
+        <div class="col-md-7">
+            <img class="img-fluid rounded mb-3 mb-md-0" src=@Html.DisplayNameFor(model => model.Courses[0].SiteUrl) alt="">
+        </div>
+        <div class="col-md-5">
+            <h3>@Html.DisplayNameFor(model => model.Courses[0].CourseName)</h3>
+            <p>@Html.DisplayNameFor(model => model.Courses[0].InfoCourse)</p>
+            <a asp-action="Details" class="btn btn-primary" asp-route-id="@Html.DisplayNameFor(model => model.Courses[0].CourseId)">Kursu İncele</a>
+        </div>
+    </div>-->
+    <!-- /.row -->
+    <!--<div class="top-margin">
+        <div class="row">
+        </div>
+    </div>-->
+    @foreach (var item in Model.Courses)
+    {
+        <div class="row">
+
+            <div class="col-md-7">
+                <img class="img-fluid rounded mb-3 mb-md-0" src=@Html.DisplayFor(modelItem => item.SiteUrl) alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>@Html.DisplayFor(modelItem => item.CourseName)</h3>
+                <p>@Html.DisplayFor(modelItem => item.InfoCourse)</p>
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.CourseId">Kursu İncele</a>
+                <a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.CourseId">Kursu Sil</a>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="top-margin">
+            <div class="row">
+            </div>
+        </div>
+    }
+
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses[0].CourseName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses[0].SiteUrl)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses[0].InfoCourse)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses[0].ActTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses[0].Sports)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Courses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteUrl)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InfoCourse)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ActTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SportsID)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+</div>

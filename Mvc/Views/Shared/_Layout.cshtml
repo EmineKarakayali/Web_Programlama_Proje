@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Member> SignInManager
 @inject UserManager<Member> UserManager
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,70 +12,57 @@
     <title>@ViewData["Title"] - Ekstrem Sport</title>
     <link rel="shortcut icon" href="~/images/logo.png">
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+
+    <!-- Custom styles for our template -->
     <link rel="stylesheet" href="~/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/rating.css">
 </head>
 <body class="home">
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top headroom">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="Bla Bla Logo"> <i> EKSTREM SPORT </i></a>
 
+    <!-- /.navbar -->
+    <header id="head" class="secondary">
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top headroom">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Button for smallest screens -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="Bla Bla Logo"> <i> EKSTREM SPORT </i></a>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                        <li><a asp-area="" asp-controller="Courses" asp-action="Index">Kurslar</a></li>
+                        <li class="dropdown">
+                            <a asp-controller="Sports" asp-action="Info" class="dropdown-toggle" data-toggle="dropdown">Spor Dalları <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Abseiling</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Bungee Jumping</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Canyoning</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Dağ Bisikleti</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Dalış</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Kampçılık</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Kayak</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Motokros</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Rafting</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Snowboard</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Wakeboard</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Yamaç Paraşütü</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Zipline</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Courses" asp-action="kampanyalar">Kampanyalar</a></li>
+                        <li><a asp-controller="Home" asp-action="iletisim">İletişim</a></li>
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
-                    <li class="dropdown">
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="dropdown-toggle" data-toggle="dropdown">Kurslar <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Abseiling</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Bungee Jumping</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Canyoning</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Dağ Bisikleti</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Dalış</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Kampçılık</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Kayak</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Motokros</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Rafting</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Snowboard</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Wakeboard</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Yamaç Paraşütü</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Zipline</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Spor Dalları <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="spordallari.html">Abseiling</a></li>
-                            <li><a href="spordallari.html#BungeeJumping">Bungee Jumping</a></li>
-                            <li><a href="spordallari.html#Canyoning">Canyoning</a></li>
-                            <li><a href="spordallari.html#DagBisikleti">Dağ Bisikleti</a></li>
-                            <li><a href="spordallari.html#Dalis">Dalış</a></li>
-                            <li><a href="spordallari.html#Kampcilik">Kampçılık</a></li>
-                            <li><a href="spordallari.html#Kayak">Kayak</a></li>
-                            <li><a href="spordallari.html#Motokros">Motokros</a></li>
-                            <li><a href="spordallari.html#Rafting">Rafting</a></li>
-                            <li><a href="spordallari.html#Snowboard">Snowboard</a></li>
-                            <li><a href="spordallari.html#Wakeboard">Wakeboard</a></li>
-                            <li><a href="spordallari.html#YamacParasutu">Yamaç Paraşütü</a></li>
-                            <li><a href="spordallari.html#Zipline">Zipline</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="topluluklar.html">Topluluklar</a></li>
-                    <li><a href="kampanyalar.html">Kampanyalar</a></li>
-                    <li><a href="iletisim.html">İletişim</a></li>
-                    <partial name="_LoginPartial" />
-                </ul>
-            </div><!--/.nav-collapse -->
         </div>
-    </div>
-
+    </header>
 
     <div class="home">
         <main role="main" class="home">
@@ -105,12 +92,17 @@
 
                     <div class="col-md-3 widget">
                         <h3 class="widget-title">Ücretsiz İndirin</h3>
-                        
                             <a href=""> <img src="~/images/appstore.png" alt="&#220;cretsiz İndir!"></a>
-                        
-                        
                             <a href=""> <img src="~/images/playstore.png" alt="&#220;cretsiz İndir!"></a>
-                        
+                    </div>
+
+                    <div class="col-md-3 widget">
+                        <h3 class="widget-title"> Hakkımızda</h3>
+                        <div class="widget-body">
+                            <p>Ekstrem Sport'un misyonu sporu kullanıcılarımıza sevdirmektir. Bu yolda vizyonumuz ise olabildiğince çok sporsever insana ulaşmaktır. Ekibimiz bunun için titiz çalışmalarını sürdürmektedir.</p>
+                            <h5> Ekibimiz </h5>
+                            <p>Ahsen Altaş -  Melike Göncü - Emine Karakayalı </p>
+                        </div>
                     </div>
 
                     <div class="col-md-3 widget">
@@ -125,14 +117,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 widget">
-                        <h3 class="widget-title">Bla Bla Bir Şeyler Bir Şeyler</h3>
-                        <div class="widget-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-                            <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
-                        </div>
-                    </div>
-
                 </div> <!-- /row of widgets -->
             </div>
         </div>
@@ -144,8 +128,8 @@
                     <div class="col-md-6 widget">
                         <div class="widget-body">
                             <p class="simplenav">
-                                <a href="#">Ana Sayfa</a> |
-                                <a href="iletisim.html">İletişim</a> |
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a> |
+                                <a asp-controller="Home" asp-action="iletisim">İletişim</a> |
                                 <partial name="_LoginFooter" />
                             </p>
                         </div>
@@ -154,7 +138,7 @@
                     <div class="col-md-6 widget">
                         <div class="widget-body">
                             <p class="text-right">
-                               <a> Copyright &copy; 2020, Bu site designed by Ahsen-Melike-Emine</a>
+                                <a>  Copyright &copy; 2020, Bu site designed by Ahsen-Melike-Emine</a>
                             </p>
                         </div>
                     </div>
@@ -162,16 +146,20 @@
                 </div> <!-- /row of widgets -->
             </div>
         </div>
-
+        <a href="#" class="yukarikaydir">
+            <img src="~/images/up-arrow.png">
+        </a>
     </footer>
 
 
     <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/comments.js"></script>
     <script src="~/js/headroom.min.js"></script>
     <script src="~/js/jQuery.headroom.min.js"></script>
     <script src="~/js/template.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
