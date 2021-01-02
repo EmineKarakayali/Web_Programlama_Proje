@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<!DOCTYPE html>
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<Member> SignInManager
 @inject UserManager<Member> UserManager
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -34,46 +34,51 @@
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="Bla Bla Logo"> <i> EKSTREM SPORT </i></a>
 
                 </div>
+
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
-                        <li><a asp-area="" asp-controller="Courses" asp-action="Index">Kurslar</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">@localizer["Anasayfa"]</a></li>
+                        <li><a asp-area="" asp-controller="Courses" asp-action="Index">@localizer["Kurslar"]</a></li>
                         <li class="dropdown">
-                            <a asp-controller="Sports" asp-action="Info" class="dropdown-toggle" data-toggle="dropdown">Spor Dalları <b class="caret"></b></a>
+                            <a asp-controller="Sports" asp-action="Info" class="dropdown-toggle" data-toggle="dropdown">@localizer["SporDallari"]<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Abseiling</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Bungee Jumping</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Canyoning</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Dağ Bisikleti</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Dalış</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Kampçılık</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Kayak</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Motokros</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Rafting</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Snowboard</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Wakeboard</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Yamaç Paraşütü</a></li>
-                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">Zipline</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Abseiling"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["BungeeJumping"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Kanyoning"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["DagBisikleti"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Dalis"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Kampcilik"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Kayak"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Motokros"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Rafting"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Snowboard"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Wakeboard"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["YamacParasutu"]</a></li>
+                                <li><a asp-area="" asp-controller="Sports" asp-action="Info">@localizer["Zipline"]</a></li>
                             </ul>
                         </li>
-                        <li><a asp-controller="Courses" asp-action="kampanyalar">Kampanyalar</a></li>
-                        <li><a asp-controller="Home" asp-action="iletisim">İletişim</a></li>
+                        <li><a asp-controller="Courses" asp-action="kampanyalar">@localizer["Kampanyalar"]</a></li>
+                        <li><a asp-controller="Home" asp-action="iletisim">@localizer["Iletisim"]</a></li>
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             if (User.IsInRole("Admin"))
                             {
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Paneli <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a asp-controller="Courses" asp-action="Create">Kurs Oluştur</a></li>
-                                        <li><a asp-controller="Sports" asp-action="Create">Spor Oluştur</a></li>
-                                    </ul>
-                                </li>
-                            }
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Paneli <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a asp-controller="Courses" asp-action="Create">Kurs Oluştur</a></li>
+                    <li><a asp-controller="Sports" asp-action="Create">Spor Oluştur</a></li>
+                </ul>
+            </li>}
                         }
                         <partial name="_LoginPartial" />
+                        <li>
+                            <partial name="_Culture" />
+                        </li>
                     </ul>
                 </div><!--/.nav-collapse -->
+
             </div>
         </div>
     </header>
@@ -93,34 +98,34 @@
                 <div class="row">
 
                     <div class="col-md-3 widget">
-                        <h3 class="widget-title">İletişim</h3>
+                        <h3 class="widget-title">@localizer["Iletisim"]</h3>
                         <div class="widget-body">
                             <p>
                                 +145861451315<br>
                                 <a href="mailto:#">biseybisey@biseybisey.com</a><br>
                                 <br>
-                                Sakarya Üniversitesi Bilgisayar ve Bilişim Bilimleri Fakültesi Bilgisayar Mühendisliği 3. Sınıf Öğrencileri Web Programlama Proje Ödevi
+                                @localizer["IletisimParagraf"]
                             </p>
                         </div>
                     </div>
 
                     <div class="col-md-3 widget">
-                        <h3 class="widget-title">Ücretsiz İndirin</h3>
-                        <a href=""> <img src="~/images/appstore.png" alt="&#220;cretsiz İndir!"></a>
-                        <a href=""> <img src="~/images/playstore.png" alt="&#220;cretsiz İndir!"></a>
+                        <h3 class="widget-title">@localizer["Indirin"]</h3>
+                        <a href=""> <img src="~/images/appstore.png" alt=""></a>
+                        <a href=""> <img src="~/images/playstore.png" alt=""></a>
                     </div>
 
                     <div class="col-md-3 widget">
-                        <h3 class="widget-title"> Hakkımızda</h3>
+                        <h3 class="widget-title"> @localizer["Hakkimizda"]</h3>
                         <div class="widget-body">
-                            <p>Ekstrem Sport'un misyonu sporu kullanıcılarımıza sevdirmektir. Bu yolda vizyonumuz ise olabildiğince çok sporsever insana ulaşmaktır. Ekibimiz bunun için titiz çalışmalarını sürdürmektedir.</p>
-                            <h5> Ekibimiz </h5>
+                            <p>@localizer["HakkimizdaParagraf"]</p>
+                            <h5> @localizer["Ekibimiz"] </h5>
                             <p>Ahsen Altaş -  Melike Göncü - Emine Karakayalı </p>
                         </div>
                     </div>
 
                     <div class="col-md-3 widget">
-                        <h3 class="widget-title">Bizi Takip Edin</h3>
+                        <h3 class="widget-title">@localizer["TakipEdin"]</h3>
                         <div class="widget-body">
                             <p class="follow-me-icons">
                                 <a href=""><i class="fa fa-twitter fa-2"></i></a>
@@ -142,8 +147,8 @@
                     <div class="col-md-6 widget">
                         <div class="widget-body">
                             <p class="simplenav">
-                                <a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a> |
-                                <a asp-controller="Home" asp-action="iletisim">İletişim</a> |
+                                <a asp-area="" asp-controller="Home" asp-action="Index">@localizer["Anasayfa"]</a> |
+                                <a asp-controller="Home" asp-action="iletisim">@localizer["Iletisim"]</a> |
                                 <partial name="_LoginFooter" />
                             </p>
                         </div>
@@ -173,6 +178,7 @@
     <script src="~/js/headroom.min.js"></script>
     <script src="~/js/jQuery.headroom.min.js"></script>
     <script src="~/js/template.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

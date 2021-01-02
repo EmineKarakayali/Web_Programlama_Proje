@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @inject SignInManager<Member> SignInManager
 @inject UserManager<Member> UserManager
 
@@ -10,17 +11,17 @@
     </li>
     <li>
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="btn btn-action">Çıkış</button>
+            <button  type="submit" class="btn btn-action">@localizer["Cikis"]</button>
         </form>
     </li>
 }
 else
 {
     <li>
-        <a class="btn" asp-area="Identity" asp-page="/Account/Register">Üye Ol</a>
+        <a class="btn" asp-area="Identity" asp-page="/Account/Register">@localizer["UyeOl"]</a>
     </li>
     <li>
-        <a class="btn" asp-area="Identity" asp-page="/Account/Login">Üye Girişi</a>
+        <a class="btn" asp-area="Identity" asp-page="/Account/Login">@localizer["UyeGirisi"]</a>
     </li>
 }
 </ul>

@@ -157,6 +157,9 @@ namespace SportProject.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("ComApproval")
+                        .HasColumnType("bit");
+
                     b.Property<string>("CommentTxt")
                         .HasColumnType("nvarchar(max)");
 
@@ -166,15 +169,20 @@ namespace SportProject.Data.Migrations
                     b.Property<int?>("CoursesCourseId")
                         .HasColumnType("int");
 
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MemberId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("SendDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserNick")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommentId");
 
                     b.HasIndex("CoursesCourseId");
+
+                    b.HasIndex("MemberId1");
 
                     b.ToTable("Comment");
                 });
@@ -360,6 +368,10 @@ namespace SportProject.Data.Migrations
                     b.HasOne("SportProject.Models.Courses", "Courses")
                         .WithMany()
                         .HasForeignKey("CoursesCourseId");
+
+                    b.HasOne("SportProject.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberId1");
                 });
 
             modelBuilder.Entity("SportProject.Models.Courses", b =>

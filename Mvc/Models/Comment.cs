@@ -10,9 +10,12 @@ namespace SportProject.Models
         public int CommentId { get; set; }
         public string CommentTxt { get; set; }
         public DateTime SendDate { get; set; }
-        public string UserNick { get; set; }
-        public int CourseId { get; set; }
-        public virtual Courses Courses { get; set; }
+        public bool ComApproval { get; set; }
 
+        public int CourseId { get; set; }
+        public Courses Courses { get; set; }
+
+        public int MemberId { get; set; }
+        public Member Member { get; set; }
     }
 }

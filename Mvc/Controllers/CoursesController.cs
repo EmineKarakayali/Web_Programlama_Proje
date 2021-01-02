@@ -53,6 +53,7 @@ namespace SportProject.Controllers
         {
             return "Filter" + searchString;
         }
+
         public IActionResult kampanyalar()
         {
             return View();

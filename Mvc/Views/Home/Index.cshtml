@@ -1,9 +1,10 @@
-﻿	<!-- Header -->
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<!-- Header -->
 <header id="head">
     <div class="container">
         <div class="row">
-            <h1 class="lead">SPOR, SAĞLIK, YAŞAM</h1>
-            <p class="tagline">SPOR KURSLARI: Spor hakkında her şey by <a href="main.html">Ekstrem Sport</a></p>
+            <h1 class="lead">@localizer["GirisBaslik"]</h1>
+            <p class="tagline">@localizer["GirisParagraf"] <a href="main.html">Ekstrem Sport</a></p>
 
         </div>
     </div>
@@ -12,9 +13,9 @@
 <!-- Intro -->
 <div class="container text-center">
     <br> <br>
-    <h2 class="thin">Spor kurslarına bugün başla.</h2>
+    <h2 class="thin">@localizer["AnaBaslik"]</h2>
     <p class="text-muted">
-        Binlerce çeşit spor ve spor kursu ile aralarından kendine en uygun olanı bul.
+        @localizer["AnaParagraf"]
     </p>
 </div>
 <!-- /Intro-->
@@ -22,31 +23,31 @@
 <div class="jumbotron top-space">
     <div class="container">
 
-        <h3 class="text-center thin">Spor yapmanın hayatımıza katkıları</h3>
+        <h3 class="text-center thin">@localizer["Katkilari"]</h3>
 
         <div class="row">
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Spor yapmanın beyin sağlığına pozitif etkisi vardır.</h4></div>
+                <div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>@localizer["Katki1Baslik"]</h4></div>
                 <div class="h-body text-center">
-                    <p>Bunun en önemli nedeni, egzersizin beyin kan (ve dolayısıyla oksijen) beslemesini güçlendirmesidir. Bu da düşünmek için gereken enerjiyi sağlar. Aynı zamanda nöronların büyümesini teşvik edebilir ve belki de beynin genel sağlığı için çok önemli olan belirli nörotransmitterlerin ve büyüme hormonlarının salınımını artırabilir. Tüm bunlar daha iyi konsantrasyon, zeka ve hafızaya katkıda bulunur.</p>
+                    <p>@localizer["Katki1Aciklama"]</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Fiziksel performansınızı geliştirir.</h4></div>
+                <div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>@localizer["Katki2Baslik"]</h4></div>
                 <div class="h-body text-center">
-                    <p> Spor yapmak iştahı düzenler, aşırı kiloların oluşmasının önüne geçer ve vücuttaki yağ oranını azaltarak kas oranını arttırır. Vücudun dik durma kabiliyetini geliştirir ve dayanıklılığı arttırır. Düzenli beslenme ile birleştiğinde kemik gelişimine önemli katkıda bulunur. </p>
+                    <p> @localizer["Katki2Aciklama"] </p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Sağlınız için spor gereklidir.</h4></div>
+                <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>@localizer["Katki3Baslik"]</h4></div>
                 <div class="h-body text-center">
-                    <p>Düzenli yapacağımız spor aktivitesi kalp damar sistemimiz üzerinde olumlu yönde büyük rol oynamaktadır. Kalp, kas yapısı sisteminde olduğu için kasılma düzeyini maksimize etmek ve böylelikle tüm organizmamıza iyi bir dağılımla kan pompalayabilmek için sportif aktivitelerden vazgeçmemeliyiz. Diğer taraftan yapacağımız fiziksel aktivite kalp damar hastalıkları risk faktörüne karşı iyi bir silah olacaktır; arteriyel hiper tansiyonu minumum seviyede tutar, aterosikleroza karşı iyi bir ilaçtır. </p>
+                    <p>@localizer["Katki3Aciklama"]</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 highlight">
-                <div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Stresle başa çıkmanıza yardımcı olur.</h4></div>
+                <div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>@localizer["Katki4Baslik"]</h4></div>
                 <div class="h-body text-center">
-                    <p>Günlük yaşantının içerisinde pek çok olumsuz durum ve yaşamsal zorluk bireylerin stres kaynaklarını oluşturmaktadır. Yapılan çalışmalar sonucunda stresi azaltmak, insanın iyi olma halini artırmak ve sağlıklı olmak için önerilerin başında düzenli fiziksel aktivite gelmektedir. Bedensel ve ruhsal sağlığın korunması için düzenli yapılan aktivite ve egzersizlerin önemi gün geçtikçe artmaktadır.   </p>
+                    <p>@localizer["Katki4Aciklama"]</p>
                 </div>
             </div>
         </div> <!-- /row  -->
@@ -57,39 +58,39 @@
 <!-- container -->
 <div class="container">
 
-    <h2 class="text-center top-space">Sıkça Sorulan Sorular</h2>
+    <h2 class="text-center top-space">@localizer["Sorulanlar"]</h2>
     <br>
 
     <div class="row">
         <div class="col-sm-6">
-            <h3>Size nasıl ulaşabiliriz?</h3>
-            <p>Bize ulaşmak için <a href="iletisim.html"> iletişim</a> sayfamızdan bize mail atabilir, telefonla arayabilir ya da adresi yazılı ofisimize gelebilirsiniz. Ayrıca bize <a href=""> Twitter</a> ,<a href=""> Facebook </a> ve <a href=""> Instagram</a> hesaplarımızdan ulaşabilirsiniz.</p>
+            <h3>@localizer["NasilUlasiriz"]</h3>
+            <p>@localizer["NasilUlasirizParagraf"]</p>
         </div>
         <div class="col-sm-6">
-            <h3>Hangi spor dallarında kurslar paylaşıyorsunuz?</h3>
+            <h3>@localizer["HangiSporlar"]</h3>
             <p>
-                Hangi spor dallarında kampanyalar yaptığımız ve kurslar paylaştığımızı <a href="spordallari.html"> Spor Dalları</a> sayfamızdan görüntüleyebilirsiniz. Ayrıca şunu belirtmek isteriz ki, Ekstrem Sport ekibi olarak kampanyalar yaptığımız ve kurslar paylaştığımız spor dallarını genişletmek adına bir çalışma yürütmekteyiz. Pek yakında çok daha fazla spor dalında sizlerle olacağız. Takipte kalınız.
+                @localizer["HangiSporlarParagraf"]
             </p>
         </div>
     </div> <!-- /row -->
 
     <div class="row">
         <div class="col-sm-6">
-            <h3>Kampanyalarınızdan yalnızca üyeler mi yararlanabilir?</h3>
+            <h3>@localizer["Kampanya"]</h3>
             <p>
-                Evet, kampanyalarımızdan yararlanak için <a href="signup.html"> üye ol</a>mak ve <a href="signin.html"> üye girişi</a> yapmış olmak gerekmektedir.
+                @localizer["KampanyaParagraf"]
             </p>
         </div>
         <div class="col-sm-6">
-            <h3>Kampanyalarınız süresiz midir?</h3>
+            <h3>@localizer["KampanyaSure"]</h3>
             <p>
-                Kimi kampanyamız süresizdir kimi ise kısıtlı süre içerisinde geçerlidir. Süre bilgisi <a href="kampanyalar" .html>kampanyalar </a>sayfamızda belirtilir. Kısıtlı sürede geçerli olan kampanyalarımızı kaçırmamak için <a href="signup.html"> üye ol</a>up  maillerinizi takip etmeniz gerekmektedir.
+                @localizer["KampanyaSureParagraf"]
             </p>
         </div>
     </div> <!-- /row -->
 
     <div class="jumbotron top-space">
-        <h4>Ekstrem Sport'a özel kampanyalar ve kaçırılmayacak fırsatlar hakkında daha fazlasını öğren! Çeşitli <a href="kurslar.html">kurslarda</a> %50'ye varan indirimleri ve erken kayıtlara özel fırsatları kaçırma!</h4>
-        <p class="text-right"><a href="kampanyalar.html" class="btn btn-primary btn-large">Tümünü görüntüle »</a></p>
+        <h4>@localizer["Firsatlar"]</h4>
+        <p class="text-right"><a href="kampanyalar.html" class="btn btn-primary btn-large">@localizer["TumunuGoruntule"] »</a></p>
     </div>
 </div>
