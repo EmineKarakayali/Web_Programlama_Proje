@@ -46,9 +46,11 @@ namespace SportProject.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
             [Display(Name = "Ad: *")]
             public string Name { get; set; }
 
+            [Required]
             [Display(Name = "Soyad: *")]
             public string Surname { get; set; }
 
@@ -68,12 +70,13 @@ namespace SportProject.Areas.Identity.Pages.Account
             [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
             public string Birthdate { get; set; }
 
-            [Required(ErrorMessage = "{0} alanı boş geçilemez.")]
+            [Required]
             [StringLength(100)]
             [DataType(DataType.Password, ErrorMessage = "Lüften en az 3 karakterli, rakam ve harflerden oluşan bir şifre giriniz.")]
             [Display(Name = "Şifre: *")]
             public string Password { get; set; }
 
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Şifre tekrarı: *")]
             [Compare("Password", ErrorMessage = "Şifreler aynı değil.")]

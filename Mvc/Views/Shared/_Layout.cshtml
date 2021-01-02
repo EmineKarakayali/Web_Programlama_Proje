@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<Member> SignInManager
 @inject UserManager<Member> UserManager
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -57,6 +58,19 @@
                         </li>
                         <li><a asp-controller="Courses" asp-action="kampanyalar">Kampanyalar</a></li>
                         <li><a asp-controller="Home" asp-action="iletisim">İletişim</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Paneli <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a asp-controller="Courses" asp-action="Create">Kurs Oluştur</a></li>
+                                        <li><a asp-controller="Sports" asp-action="Create">Spor Oluştur</a></li>
+                                    </ul>
+                                </li>
+                            }
+                        }
                         <partial name="_LoginPartial" />
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -92,8 +106,8 @@
 
                     <div class="col-md-3 widget">
                         <h3 class="widget-title">Ücretsiz İndirin</h3>
-                            <a href=""> <img src="~/images/appstore.png" alt="&#220;cretsiz İndir!"></a>
-                            <a href=""> <img src="~/images/playstore.png" alt="&#220;cretsiz İndir!"></a>
+                        <a href=""> <img src="~/images/appstore.png" alt="&#220;cretsiz İndir!"></a>
+                        <a href=""> <img src="~/images/playstore.png" alt="&#220;cretsiz İndir!"></a>
                     </div>
 
                     <div class="col-md-3 widget">
@@ -159,7 +173,6 @@
     <script src="~/js/headroom.min.js"></script>
     <script src="~/js/jQuery.headroom.min.js"></script>
     <script src="~/js/template.js"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

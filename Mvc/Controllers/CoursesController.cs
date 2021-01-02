@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +16,12 @@ namespace SportProject.Controllers
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public CoursesController(ApplicationDbContext context)
+        public CoursesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Courses
@@ -48,14 +53,14 @@ namespace SportProject.Controllers
         {
             return "Filter" + searchString;
         }
-
         public IActionResult kampanyalar()
         {
             return View();
         }
 
-
         // GET: Courses/Details/5
+
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -75,9 +80,10 @@ namespace SportProject.Controllers
         }
 
         // GET: Courses/Create
+
         public IActionResult Create()
         {
-            ViewData["SportsId"] = new SelectList(_context.Sports, "SportId", "SportId");
+            ViewData["SportsId"] = new SelectList(_context.Sports, "SportId", "SportName");
             return View();
         }
 
@@ -86,19 +92,37 @@ namespace SportProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,SiteUrl,InfoCourse,ActTime,SportsId")] Courses courses)
         {
             if (ModelState.IsValid)
             {
+                //**
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images\kurs");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                courses.SiteUrl = @"\images\kurs\" + fileName + extension;
+
+                //****
                 _context.Add(courses);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SportsId"] = new SelectList(_context.Sports, "SportId", "SportId", courses.SportsId);
+            ViewData["SportsId"] = new SelectList(_context.Sports, "SportId", "SportName", courses.SportsId);
             return View(courses);
         }
 
         // GET: Courses/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -120,6 +144,7 @@ namespace SportProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,SiteUrl,InfoCourse,ActTime,SportsId")] Courses courses)
         {
             if (id != courses.CourseId)
@@ -152,6 +177,7 @@ namespace SportProject.Controllers
         }
 
         // GET: Courses/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace SportProject.Controllers
 {
     public class SportsController : Controller
     {
+
         private readonly ApplicationDbContext _context;
 
         public SportsController(ApplicationDbContext context)
@@ -24,6 +26,7 @@ namespace SportProject.Controllers
         {
             return View(await _context.Sports.ToListAsync());
         }
+        [AllowAnonymous]
         public IActionResult Info()
         {
             return View();
