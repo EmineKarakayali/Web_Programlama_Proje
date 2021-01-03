@@ -7,7 +7,7 @@
 <div class="container">
 
     <ol class="breadcrumb">
-        <li><a href="main.html">Ana Sayfa</a></li>
+        <li><a  asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
         <li class="active">Üyelik</li>
     </ol>
 
@@ -74,7 +74,7 @@
                                 <div class="col-lg-8">
                                     <label class="checkbox">
                                         <input type="checkbox" required><span class="text-danger">*</span>
-                                        <a asp-controller="Home" asp-action="Privacy">Üyelik Sözleşmesi</a> şartlarını okudum ve kabul ediyorum.
+                                        <a target='_blank' asp-controller="Home" asp-action="Privacy">Üyelik Sözleşmesi</a> şartlarını okudum ve kabul ediyorum.
                                     </label>
                                     <label class="checkbox">
                                         <input type="checkbox">

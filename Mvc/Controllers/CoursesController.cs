@@ -54,6 +54,7 @@ namespace SportProject.Controllers
             return "Filter" + searchString;
         }
 
+        [Authorize]
         public IActionResult kampanyalar()
         {
             return View();
