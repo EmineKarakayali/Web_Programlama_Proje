@@ -44,6 +44,7 @@ namespace SportProject
                 options.Password.RequiredLength = 3;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
